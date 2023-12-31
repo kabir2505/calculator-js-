@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link  rel="stylesheet"  href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="calculator">
+        <div id="screen" style="display:flex;align-items: flex-end;flex-direction: column;">
+            <div id="screen1" style="font-size: xx-large; background-color: aquamarine;">
+                
+            </div>
+            <div id="screen2" style="font-size:60px;background-color: azure; ">
+               0
+            </div>
+        </div>
+        <div id="basic">
+
+            <button id="clear"  style="width:185px;height: 65px; margin-left: 30px; border-radius: 10px;background-color:lightgoldenrodyellow;font-size: xx-large; ">Clear</button>
+            <button id="delete" style="width:185px;height: 65px; margin-right: 30px;border-radius: 10px;background-color:lightcoral;font-size: xx-large;  ">Delete</button>
+        </div>
+        <div id="btnss">
+            <div id="numbuttons">
+                <div id="col1">
+                    <button id="7" class="mbn" onclick="clickedme(7)">7</button>
+                    <button id="4" class="mbn" onclick="clickedme(4)">4</button>
+                    <button id="1" class="mbn" onclick="clickedme(1)">1</button>
+                    <button id="." class="mbn" onclick="clickedme('.')">.</button>
+                </div>
+                <div id="col2">
+                    <button id="8" class="mbn" onclick="clickedme(8)">8</button>
+                    <button id="5" class="mbn" onclick="clickedme(5)">5</button>
+                    <button id="2" class="mbn" onclick="clickedme(2)">2</button>
+                    <button id="0" class="mbn" onclick="clickedme(0)">0</button>
+                </div>
+                <div id="col3">
+                    <button id="9" class="mbn" onclick="clickedme(9)">9</button>
+                    <button id="6" class="mbn" onclick="clickedme(6)">6</button>
+                    <button id="3" class="mbn" onclick="clickedme(3)">3</button>
+                    <button id="=" class="mbn"  onclick="solution()">=</button>
+                </div>
+                
+            </div>
+        <div id="operationb">
+            <div id="col4">
+                <button id="÷" class="mbn" onclick="clickedoper('÷')" > ÷ </button>
+                <button id="x" class="mbn" onclick="clickedoper('x')"> <span>x </span></button>
+                <button id="-" class="mbn" onclick="clickedoper('-')"> - </button>
+                <button id="+" class="mbn" onclick="clickedoper('+')"> &nbsp;+&nbsp; </button>
+            </div>
+
+        </div>
+        
+    </div>
+    </div>
+</body>
+<script src="app.js"></script>
+</html>
