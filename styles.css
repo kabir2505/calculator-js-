@@ -76,3 +76,17 @@
     background-color:lavenderblush;
     font-size:xx-large;
 }
+.github-link {
+    display: inline-block; /* Ensures the link is displayed inline */
+    vertical-align: middle; /* Aligns the link vertically */
+}
+
+/* Optional: Adjust the size of the image */
+.github-link img {
+    width: 30px;
+    height: 30px;
+}
+footer {
+    margin-top:30px;
+    text-align: center; /* Center-aligns the content inside the footer */
+}
