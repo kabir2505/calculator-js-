@@ -1,6 +1,22 @@
 const screen1=document.getElementById('screen1')
 const screen2=document.getElementById('screen2')
 let store=''
+const deleteb=document.getElementById('delete').addEventListener('click',function(){
+    console.log(typeof screen1.innerHTML)
+    temp=screen1.innerHTML
+    templ=temp.length-1
+    temp = temp.substring(0, templ)
+   
+    screen1.innerHTML=temp
+    // for (let i=0;i<temp.length;i++){
+    //     screen1.innerHTML=''
+    //     screen1.innerHTML+=temp[i]
+    //     console.log(screen1.innerHTML)
+    // }
+   
+
+})
+
 function clickedme(a){
 
     if (screen1.innerHTML){
@@ -16,6 +32,9 @@ function clickedoper(a){
 
 }
 
+
+
+
 document.getElementById('clear').addEventListener("click",clear)
 
 function clear(){
@@ -28,22 +47,22 @@ let returnvalue;
 let finalsol = 0;
 
 // Add an event listener to the element with the ID '='
-document.getElementById('=').addEventListener('click', function() {
+document.getElementById('=').addEventListener('click', function hello() {
     
     if (typeof store=="object"){
+        console.log('hello1')
         temp=screen1.innerHTML
 
         temp=temp.split(' ').map(item => item.trim());
         temp= temp.filter(item => item !== '');
-        console.log('temp',temp)
+
         nah=temp.splice(-2)
         store=store.concat(nah)
         
-        console.log('store here')
-        console.log(store)
+      
 
     }else if(typeof store=='string') {
-    console.log('inside the string')
+        console.log('hello12')
     store=screen1.innerHTML
     
     store=store.split(' ').map(item => item.trim());
@@ -51,31 +70,40 @@ document.getElementById('=').addEventListener('click', function() {
     prev=screen1.innerHTML
     prev=prev.split(' ').map(item => item.trim());
     prev= prev.filter(item => item !== '');
-    
-    console.log(store)}
-    
+    console.log('store sec',store)
+    }
+    console.log('second')
+    console.log(store)
     returnvalue = solution(store);
     screen2.innerHTML = returnvalue;
     store.splice(0,3,returnvalue)
-    console.log(store)
+    while (store.length>1){
+    
+        returnvalue = solution(store);
+        returnvalue=roundTo4Decimals(returnvalue)
+        screen2.innerHTML = returnvalue;
+        store.splice(0,3,returnvalue)
+        
+    }}
    
-});
+);
 
 function solution(store) {
-    console.log('=', store);
-
+   
+    console.log('store from sol',store)
     // var lis = store.split(' ').map(item => item.trim());
     // lis = lis.filter(item => item !== '');
-
+    if (store.length){
+    console.log(store.length)}
     for (let i = 0; i < store.length; i++) {
-        if (store[i] === '+' || store[i] === '÷' || store[i] === 'x' || store[i] === '.') {
+        if (store[i] === '+' || store[i] === '÷' || store[i] === 'x' || store[i] === '.' ||store[i]=='-') {
             let operator = store[i];
-            console.log(operator);
+           
 
             // Assuming operate() performs the arithmetic operations
             let sol = operate(operator, store[i - 1], store[i + 1]);
             finalsol += sol;
-            console.log(sol)
+           
             // Update screen1 with the result
             // screen1.innerHTML = sol;
 
@@ -89,9 +117,10 @@ function solution(store) {
 
 
 
-function roudsol(n){
-    return Math.round(number*1000)/1000
-}
+function roundTo4Decimals(n) {
+    return Number(n.toFixed(4));
+  }
+  
 
 function add(a,b){
     return a+b
@@ -129,42 +158,34 @@ function operate(operator,a,b){
     }
 }
 
+// function evaluateExpression(expression) {
+//     const operators = {
+//         '+': (x, y) => x + y,
+//         '-': (x, y) => x - y,
+//         '*': (x, y) => x * y,
+//         '/': (x, y) => x / y
+//     };
 
-function evaluateExpression(expression) {
-    const operators = {
-        '+': (x, y) => x + y,
-        '-': (x, y) => x - y,
-        'x': (x, y) => x * y,
-        '÷': (x, y) => x / y
-    };
+//     let stack = [];
 
-    let stack = [];
+//     for (let token of expression) {
+//         if (!operators[token]) {
+//             stack.push(token);
+//         } else {
+//             let num2 = parseFloat(stack.pop());
+//             let operator = operators[token];
+//             let num1 = parseFloat(stack.pop());
+//             let result = operator(num1, num2);
+//             stack.push(result);
+//         }
+//     }
 
-    for (let token of expression) {
-        if (!operators[token]) {
-            stack.push(token);
-        } else {
-            let num2 = parseFloat(stack.pop());
-            let operator = operators[token];
-            let num1 = parseFloat(stack.pop());
-            let result = operator(num1, num2);
-            stack.push(result);
-        }
-    }
+//     return stack[0];
+// }
 
-    return stack[0];
-}
+// // Given expression list
+// let expressionList = [1, '+', 3, '*', 5, '/', 3];
 
-// Given expression list
-let expressionList = [1,'+',3,'x',5,'÷',3];
+// // Evaluate the expression
+// let result = evaluateExpression(expressionList);
 
-// Convert 'x' to '*' and '÷' to '/'
-expressionList = expressionList.map((item) => {
-    if (item === 'x') return '*';
-    if (item === '÷') return '/';
-    return item;
-});
-
-// Evaluate the expression
-let result = evaluateExpression(expressionList);
-console.log("Result:", result);
